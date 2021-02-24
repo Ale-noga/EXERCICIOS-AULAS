@@ -1,6 +1,4 @@
-package com.drogale.drogale.Model;
-
-
+package com.GameStore.GameStore.Model;
 
 import java.util.Date;
 
@@ -18,38 +16,38 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "produto")
+@Table(name = "produtos")
 public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_produto;
+	private Long id;
 
 	@NotNull
 	@Size(min = 2, max = 150)
 	private String nome;
-	
-	@NotNull
-	@Size(min = 2, max = 15)
-	private String lote;
-	
+
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Date chegada;
-	
+	private Date lancamento;
+
 	@NotNull
 	private double preco;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private Categoria categoria;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Usuario usuario;
 
-	public Long getId_produto() {
-		return id_produto;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_produto(Long id_produto) {
-		this.id_produto = id_produto;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -60,12 +58,12 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public String getLote() {
-		return lote;
+	public Date getLancamento() {
+		return lancamento;
 	}
 
-	public void setLote(String lote) {
-		this.lote = lote;
+	public void setLancamento(Date lancamento) {
+		this.lancamento = lancamento;
 	}
 
 	public double getPreco() {
@@ -84,17 +82,13 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-	public Date getChegada() {
-		return chegada;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setChegada(Date chegada) {
-		this.chegada = chegada;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	
-	
-	
-	
-
 }
